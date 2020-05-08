@@ -11,7 +11,7 @@
     >
       <van-tab name="City">
         <span slot="title"
-          >南京
+          >{{ _state.nm }}
           <van-icon
             size="10"
             class="iconfont"
@@ -43,7 +43,6 @@ import NowPlaying from '@/components/home/NowPlaying.vue'
 import ComingSoon from '@/components/home/ComingSoon.vue'
 import Search from '@/components/home/Search.vue'
 import { getLocation } from '@/utils/service'
-import { Dialog } from 'vant'
 
 export default {
   name: 'Home',
@@ -66,8 +65,24 @@ export default {
   mounted() {
     getLocation().then(res => {
       console.log(res)
+      function beforeClose(action, done) {
+        if (action === 'confirm') {
+          this._state.nm = res.nm
+          this._state.id = res.id
+
+          console.log(this._state.nm)
+
+          setTimeout(done, 1000)
+        } else {
+          done()
+        }
+      }
+      this.$dialog.confirm({
+        confirmButtonText: '切换定位',
+        message: `定位到您所在城市为 ${res.nm}`,
+        beforeClose
+      })
     })
-    Dialog({ message: '提示' })
   }
 }
 </script>

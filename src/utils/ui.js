@@ -13,7 +13,8 @@ import {
   Cell,
   CellGroup,
   Search,
-  Toast
+  Toast,
+  Dialog
 } from 'vant'
 Vue.use(Button)
 Vue.use(Tabbar)
@@ -28,3 +29,4 @@ Vue.use(Cell)
 Vue.use(CellGroup)
 Vue.use(Search)
 Vue.use(Toast)
+Vue.use(Dialog)
