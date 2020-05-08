@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <van-nav-bar :title="this.$route.meta.title" />
-    <router-view />
-    <van-tabbar route active-color="#F39C12">
+    <van-nav-bar fixed placeholder :title="this.$route.meta.title" />
+    <div class="app-view">
+      <router-view />
+    </div>
+
+    <van-tabbar placeholder route active-color="#F39C12">
       <van-tabbar-item replace to="/home">
         <van-icon
           class="iconfont"
@@ -48,5 +51,8 @@ export default {
 @import url('https://at.alicdn.com/t/font_1349038_qk1glmidy1j.css');
 .van-nav-bar {
   background-color: @background-color !important;
+}
+* {
+  box-sizing: border-box;
 }
 </style>

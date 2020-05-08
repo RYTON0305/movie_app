@@ -1,6 +1,35 @@
 <template>
   <div>
-    Cinema
+    Cinema Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+    consequatur laborum sunt impedit voluptates, atque, eveniet ipsum facere
+    perferendis quam excepturi qui repudiandae in reprehenderit saepe
+    distinctio, omnis adipisci iste! Lorem ipsum dolor sit amet consectetur
+    adipisicing elit. Tempora consequatur laborum sunt impedit voluptates,
+    atque, eveniet ipsum facere perferendis quam excepturi qui repudiandae in
+    reprehenderit saepe distinctio, omnis adipisci iste! Lorem ipsum dolor sit
+    amet consectetur adipisicing elit. Tempora consequatur laborum sunt impedit
+    voluptates, atque, eveniet ipsum facere perferendis quam excepturi qui
+    repudiandae in reprehenderit saepe distinctio, omnis adipisci iste! Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Tempora consequatur
+    laborum sunt impedit voluptates, atque, eveniet ipsum facere perferendis
+    quam excepturi qui repudiandae in reprehenderit saepe distinctio, omnis
+    adipisci iste! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Tempora consequatur laborum sunt impedit voluptates, atque, eveniet ipsum
+    facere perferendis quam excepturi qui repudiandae in reprehenderit saepe
+    distinctio, omnis adipisci iste! Lorem ipsum dolor sit amet consectetur
+    adipisicing elit. Tempora consequatur laborum sunt impedit voluptates,
+    atque, eveniet ipsum facere perferendis quam excepturi qui repudiandae in
+    reprehenderit saepe distinctio, omnis adipisci iste! Lorem ipsum dolor sit
+    amet consectetur adipisicing elit. Tempora consequatur laborum sunt impedit
+    voluptates, atque, eveniet ipsum facere perferendis quam excepturi qui
+    repudiandae in reprehenderit saepe distinctio, omnis adipisci iste! Lorem
+    ipsum dolor sit amet consectetur adipisicing elit. Tempora consequatur
+    laborum sunt impedit voluptates, atque, eveniet ipsum facere perferendis
+    quam excepturi qui repudiandae in reprehenderit saepe distinctio, omnis
+    adipisci iste! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Tempora consequatur laborum sunt impedit voluptates, atque, eveniet ipsum
+    facere perferendis quam excepturi qui repudiandae in reprehenderit saepe
+    distinctio, omnis adipisci iste!
   </div>
 </template>
 
