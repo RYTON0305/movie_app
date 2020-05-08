@@ -9,7 +9,7 @@
       swipeable
       sticky
     >
-      <van-tab name="a">
+      <van-tab name="City">
         <span slot="title"
           >南京
           <van-icon
@@ -21,8 +21,8 @@
         </span>
         <City />
       </van-tab>
-      <van-tab title="正在热映" name="b"><NowPlaying /></van-tab>
-      <van-tab title="即将上映" name="c"><ComingSoon /></van-tab>
+      <van-tab title="正在热映" name="NowPlaying"><NowPlaying /></van-tab>
+      <van-tab title="即将上映" name="ComingSoon"><ComingSoon /></van-tab>
       <van-tab name="c">
         <van-icon
           slot="title"
@@ -42,12 +42,13 @@ import City from '@/components/home/City.vue'
 import NowPlaying from '@/components/home/NowPlaying.vue'
 import ComingSoon from '@/components/home/ComingSoon.vue'
 import Search from '@/components/home/Search.vue'
+import { getLocation } from '@/utils/service'
 
 export default {
   name: 'Home',
   data() {
     return {
-      activeName: 'a'
+      activeName: 'NowPlaying'
     }
   },
   methods: {
@@ -60,11 +61,19 @@ export default {
     NowPlaying,
     ComingSoon,
     Search
+  },
+  mounted() {
+    getLocation()
   }
 }
 </script>
 <style lang="less" scoped>
 /deep/.van-sticky--fixed {
   top: 46px;
+}
+/deep/.van-tab__pane,
+.van-tab__pane-wrapper {
+  height: calc(100vh - 140px);
+  overflow: scroll;
 }
 </style>
