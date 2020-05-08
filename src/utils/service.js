@@ -1,8 +1,14 @@
 import axios from 'axios'
 const http = (url, params) => {
-  axios.get(url, { params: params }).then(res => {
-    console.log(res.data.data)
-    return res.data.data
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, { params: params })
+      .then(res => {
+        resolve(res.data.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
   })
 }
 const getNowPlaying = (cityId = 10) => {

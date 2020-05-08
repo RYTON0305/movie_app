@@ -43,6 +43,7 @@ import NowPlaying from '@/components/home/NowPlaying.vue'
 import ComingSoon from '@/components/home/ComingSoon.vue'
 import Search from '@/components/home/Search.vue'
 import { getLocation } from '@/utils/service'
+import { Dialog } from 'vant'
 
 export default {
   name: 'Home',
@@ -63,7 +64,10 @@ export default {
     Search
   },
   mounted() {
-    getLocation()
+    getLocation().then(res => {
+      console.log(res)
+    })
+    Dialog({ message: '提示' })
   }
 }
 </script>
