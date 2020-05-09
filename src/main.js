@@ -6,7 +6,9 @@ Vue.prototype._state = state
 import './utils/ui'
 // import axios from 'axios'
 // Vue.prototype.axios = axios
-
+Vue.filter('SetImgSize', url => {
+  return url.replace(/w.h/, '600.800')
+})
 Vue.config.productionTip = false
 
 new Vue({

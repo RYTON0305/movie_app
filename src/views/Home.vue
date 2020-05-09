@@ -52,8 +52,8 @@ export default {
     }
   },
   methods: {
-    tabChange(name) {
-      console.log(name)
+    tabChange() {
+      // console.log(name)z
     }
   },
   components: {
@@ -72,7 +72,7 @@ export default {
 
           console.log(this._state.nm)
 
-          setTimeout(done, 1000)
+          setTimeout(done, 500)
         } else {
           done()
         }

@@ -14,7 +14,11 @@ import {
   CellGroup,
   Search,
   Toast,
-  Dialog
+  Dialog,
+  DropdownMenu,
+  DropdownItem,
+  Form,
+  Field
 } from 'vant'
 Vue.use(Button)
 Vue.use(Tabbar)
@@ -30,3 +34,7 @@ Vue.use(CellGroup)
 Vue.use(Search)
 Vue.use(Toast)
 Vue.use(Dialog)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(Form)
+Vue.use(Field)

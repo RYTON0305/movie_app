@@ -1,14 +1,16 @@
 <template>
   <div>
     <ul class="movie-list">
-      <li class="list-item">
+      <li class="list-item" v-for="item in list_playing" :key="item.id">
         <div class="item-left">
-          <img src="" alt="" />
+          <img :src="item.img | SetImgSize" :alt="item.nm" />
         </div>
         <div class="item-center">
-          <div class="title">调酒师</div>
-          <div class="score">观众评0</div>
-          <div class="cast">主演：刘婷风扇电机反杀了定积分</div>
+          <div class="title">{{ item.nm }}</div>
+          <div class="score">
+            观众评 <span class="num">{{ item.sc }}</span>
+          </div>
+          <div class="cast">主演：{{ item.star }}</div>
         </div>
         <div class="item-right">
           <div class="btn-buy">购票</div>
@@ -19,10 +21,19 @@
 </template>
 
 <script>
+import { getNowPlaying } from '@/utils/service'
 export default {
   name: 'NowPlaying',
   data() {
-    return {}
+    return {
+      list_playing: []
+    }
+  },
+  mounted() {
+    getNowPlaying().then(res => {
+      console.log(res)
+      this.list_playing = res.movieList
+    })
   }
 }
 </script>
@@ -66,6 +77,12 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+}
+.score {
+  .num {
+    font-weight: 700;
+    color: @text-color;
   }
 }
 .item-right {
