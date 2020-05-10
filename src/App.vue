@@ -12,10 +12,10 @@
         <transition name="van-slide-right" mode="out-in">
           <router-view />
         </transition>
-        <!-- <transition name="van-slide-right"> -->
-        <router-view name="Detail"></router-view>
-        <!-- </transition> -->
       </keep-alive>
+      <transition name="van-slide-right" mode="out-in">
+        <router-view name="detail"></router-view>
+      </transition>
     </div>
 
     <van-tabbar placeholder route active-color="#F39C12">
