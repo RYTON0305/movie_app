@@ -9,8 +9,9 @@
         @cancel="onCancel"
       />
     </form>
-    <ul class="movie-list">
-      <li class="list-item" v-for="item in list_search_movies" :key="item.id">
+    <van-divider v-if="flag">对不起，没有搜到相关内容</van-divider>
+    <ul v-else class="movie-list">
+      <li class="list-item" v-for="item in searchList" :key="item.id">
         <div class="item-left">
           <img :src="item.img | SetImgSize" :alt="item.nm" />
         </div>
@@ -31,25 +32,39 @@
 
 <script>
 import { getSearch } from '@/utils/service'
+let timer
 
 export default {
   name: 'Search',
   data() {
     return {
       value: '',
-      list_search_movies: []
+      searchList: [],
+      flag: false
     }
   },
   methods: {
     onSearch(val) {
-      if (val === '') {
-        this.list_search_movies = []
-      } else {
-        getSearch({ kw: val, cityId: this._state }).then(res => {
-          this.list_search_movies = res.movies.list
-          console.log(res.movies.list)
-        })
+      if (timer) {
+        //清空timer
+        clearTimeout(timer)
       }
+      timer = setTimeout(() => {
+        console.log('触发函数' + val)
+        if (val === '') {
+          this.searchList = []
+          this.flag = false
+        } else {
+          getSearch({ kw: val, cityId: this._state.id }).then(res => {
+            if (res.movies) {
+              this.searchList = res.movies.list
+              this.flag = false
+            } else {
+              this.flag = true
+            }
+          })
+        }
+      }, 500)
     },
     onCancel() {
       this.$toast('取消')

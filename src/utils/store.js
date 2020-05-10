@@ -1,5 +1,5 @@
 import Vue from 'vue'
 export const state = Vue.observable({
-  nm: '北京',
-  id: 10
+  nm: localStorage.getItem('locNm') || '北京',
+  id: Number(localStorage.getItem('locId')) || 10
 })

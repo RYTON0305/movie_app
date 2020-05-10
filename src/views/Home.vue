@@ -64,24 +64,43 @@ export default {
   },
   mounted() {
     getLocation().then(res => {
+      if (Number(localStorage.getItem('locId')) === res.id) return
+      // console.log(
+      //   "activated -> localStorage.getItem('locId') === res.id",
+      //   localStorage.getItem('locId')
+      // )
       console.log(res)
-      function beforeClose(action, done) {
-        if (action === 'confirm') {
+      // function beforeClose(action, done) {
+      //   if (action === 'confirm') {
+      //     this._state.nm = res.nm
+      //     this._state.id = res.id
+
+      //     console.log(this._state.nm)
+
+      //     setTimeout(done, 500)
+      //   } else {
+      //     done()
+      //   }
+      // }
+
+      this.$dialog
+        .confirm({
+          confirmButtonText: '切换定位',
+          message: `定位到您所在城市为 ${res.nm}`
+        })
+        .then((action, done) => {
           this._state.nm = res.nm
           this._state.id = res.id
-
+          localStorage.setItem('locNm', res.nm)
+          localStorage.setItem('locId', res.id)
           console.log(this._state.nm)
 
           setTimeout(done, 500)
-        } else {
-          done()
-        }
-      }
-      this.$dialog.confirm({
-        confirmButtonText: '切换定位',
-        message: `定位到您所在城市为 ${res.nm}`,
-        beforeClose
-      })
+          location.reload()
+        })
+        .catch(() => {
+          // on cancel
+        })
     })
   }
 }

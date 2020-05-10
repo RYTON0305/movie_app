@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    getComingSoon({ cityId: this._state }).then(res => {
+    getComingSoon({ cityId: this._state.id }).then(res => {
       console.log(res)
       this.list_coming = res.comingList
     })

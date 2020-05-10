@@ -10,7 +10,12 @@
         <van-index-anchor :key="cityIndex" :index="cityIndex">
           {{ cityIndex }}
         </van-index-anchor>
-        <van-cell v-for="city in value" :key="city.id" :title="city.nm" />
+        <van-cell
+          @click="handleChangeCity(city.nm, city.id)"
+          v-for="city in value"
+          :key="city.id"
+          :title="city.nm"
+        />
 
         <!-- <van-cell :key="city" v-for="city in 5" :title="city" /> -->
       </template>
@@ -25,11 +30,13 @@ export default {
   name: 'City',
   data() {
     return {
-      indexList: [],
-      cityObj: {}
+      indexList: JSON.parse(localStorage.getItem('cityIndex')) || [],
+      cityObj: JSON.parse(localStorage.getItem('cityObj')) || {}
     }
   },
   mounted() {
+    if (localStorage.getItem('cityObj') && localStorage.getItem('cityIndex'))
+      return
     getCityList().then(res => {
       console.log(res.cities)
       let cities = res.cities
@@ -43,6 +50,7 @@ export default {
       ].sort()
       firstLetters.unshift('热门')
       this.indexList = firstLetters
+      localStorage.setItem('cityIndex', JSON.stringify(firstLetters))
 
       firstLetters.map(item => {
         cityObj[item] = []
@@ -58,8 +66,31 @@ export default {
         }
       })
       this.cityObj = cityObj
-      console.log('mounted -> cityObj', cityObj)
+      localStorage.setItem('cityObj', JSON.stringify(cityObj))
     })
+  },
+  methods: {
+    handleChangeCity(cityNm, cityId) {
+      this.$dialog
+        .confirm({
+          confirmButtonText: '切换定位',
+          message: `确定要切换到 ${cityNm} 吗？`
+        })
+        .then((action, done) => {
+          console.log(this._state)
+          // this._state.nm = cityNm
+          // this._state.id = cityId
+          localStorage.setItem('locNm', cityNm)
+          localStorage.setItem('locId', cityId)
+          console.log('handleChangeCity -> this._state', this._state)
+
+          setTimeout(done, 500)
+          location.reload()
+        })
+        .catch(() => {
+          // on cancel
+        })
+    }
   }
 }
 </script>

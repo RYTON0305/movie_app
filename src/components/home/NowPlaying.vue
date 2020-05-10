@@ -35,7 +35,8 @@ export default {
     }
   },
   mounted() {
-    getNowPlaying({ cityId: this._state }).then(res => {
+    getNowPlaying({ cityId: this._state.id }).then(res => {
+      console.log('mounted -> this._state.id', this._state.nm)
       console.log(res)
       this.list_playing = res.movieList
     })
