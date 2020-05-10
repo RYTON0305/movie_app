@@ -1,29 +1,35 @@
 <template>
   <div>
-    <ul class="movie-list">
-      <li
-        class="list-item"
-        @click="handleToDetail(item.id)"
-        v-for="item in list_coming"
-        :key="item.id"
-      >
-        <div class="item-left">
-          <img :src="item.img | SetImgSize" :alt="item.nm" />
-        </div>
-        <div class="item-center">
-          <div class="title">{{ item.nm }}</div>
-          <div class="wish">{{ item.wish }}人想看</div>
-
-          <div class="score">
-            观众评 <span class="num">{{ item.sc }}</span>
+    <van-pull-refresh
+      v-model="isLoading"
+      @refresh="onRefresh"
+      success-text="刷新成功"
+    >
+      <ul class="movie-list">
+        <li
+          class="list-item"
+          @click="handleToDetail(item.id)"
+          v-for="item in list_coming"
+          :key="item.id"
+        >
+          <div class="item-left">
+            <img :src="item.img | SetImgSize" :alt="item.nm" />
           </div>
-          <div class="cast">主演：{{ item.star }}</div>
-        </div>
-        <div class="item-right">
-          <div class="btn-buy">预售</div>
-        </div>
-      </li>
-    </ul>
+          <div class="item-center">
+            <div class="title">{{ item.nm }}</div>
+            <div class="wish">{{ item.wish }}人想看</div>
+
+            <div class="score">
+              观众评 <span class="num">{{ item.sc }}</span>
+            </div>
+            <div class="cast">主演：{{ item.star }}</div>
+          </div>
+          <div class="item-right">
+            <div class="btn-buy">预售</div>
+          </div>
+        </li>
+      </ul>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -34,21 +40,33 @@ export default {
   name: 'ComingSoon',
   data() {
     return {
-      list_coming: []
+      list_coming: [],
+      isLoading: false
     }
   },
   mounted() {
-    getComingSoon({ cityId: this._state.id }).then(res => {
-      console.log(res)
-      this.list_coming = res.comingList
-    })
+    this._getComingSoon()
   },
   methods: {
+    _getComingSoon() {
+      getComingSoon({ cityId: this._state.id }).then(res => {
+        console.log(res)
+        this.list_coming = res.comingList
+      })
+    },
     handleToDetail(id) {
       console.log(id)
       this.$router.push(`/detail/${id}`).catch(err => {
         console.log(err)
       })
+    },
+
+    onRefresh() {
+      setTimeout(() => {
+        this._getComingSoon()
+
+        this.isLoading = false
+      }, 1000)
     }
   }
 }

@@ -11,7 +11,12 @@
     </form>
     <van-divider v-if="flag">对不起，没有搜到相关内容</van-divider>
     <ul v-else class="movie-list">
-      <li class="list-item" v-for="item in searchList" :key="item.id">
+      <li
+        class="list-item"
+        v-for="item in searchList"
+        :key="item.id"
+        @click="handleToDetail(item.id)"
+      >
         <div class="item-left">
           <img :src="item.img | SetImgSize" :alt="item.nm" />
         </div>
@@ -68,6 +73,12 @@ export default {
     },
     onCancel() {
       this.$toast('取消')
+    },
+    handleToDetail(id) {
+      console.log(id)
+      this.$router.push(`/detail/${id}`).catch(err => {
+        console.log(err)
+      })
     }
   }
 }

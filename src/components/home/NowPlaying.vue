@@ -1,27 +1,33 @@
 <template>
   <div>
-    <ul class="movie-list">
-      <li
-        class="list-item"
-        v-for="item in list_playing"
-        :key="item.id"
-        @click="handleToDetail(item.id)"
-      >
-        <div class="item-left">
-          <img :src="item.img | SetImgSize" :alt="item.nm" />
-        </div>
-        <div class="item-center">
-          <div class="title">{{ item.nm }}</div>
-          <div class="score">
-            观众评 <span class="num">{{ item.sc }}</span>
+    <van-pull-refresh
+      v-model="isLoading"
+      @refresh="onRefresh"
+      success-text="刷新成功"
+    >
+      <ul class="movie-list">
+        <li
+          class="list-item"
+          v-for="item in list_playing"
+          :key="item.id"
+          @click="handleToDetail(item.id)"
+        >
+          <div class="item-left">
+            <img :src="item.img | SetImgSize" :alt="item.nm" />
           </div>
-          <div class="cast">主演：{{ item.star }}</div>
-        </div>
-        <div class="item-right">
-          <div class="btn-buy">购票</div>
-        </div>
-      </li>
-    </ul>
+          <div class="item-center">
+            <div class="title">{{ item.nm }}</div>
+            <div class="score">
+              观众评 <span class="num">{{ item.sc }}</span>
+            </div>
+            <div class="cast">主演：{{ item.star }}</div>
+          </div>
+          <div class="item-right">
+            <div class="btn-buy">购票</div>
+          </div>
+        </li>
+      </ul>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -31,22 +37,30 @@ export default {
   name: 'NowPlaying',
   data() {
     return {
-      list_playing: []
+      list_playing: [],
+      isLoading: false
     }
   },
   mounted() {
-    getNowPlaying({ cityId: this._state.id }).then(res => {
-      console.log('mounted -> this._state.id', this._state.nm)
-      console.log(res)
-      this.list_playing = res.movieList
-    })
+    this._getNowPlaying()
   },
   methods: {
+    _getNowPlaying() {
+      getNowPlaying({ cityId: this._state.id }).then(res => {
+        this.list_playing = res.movieList
+      })
+    },
     handleToDetail(id) {
       console.log(id)
       this.$router.push(`/detail/${id}`).catch(err => {
         console.log(err)
       })
+    },
+    onRefresh() {
+      setTimeout(() => {
+        this._getNowPlaying()
+        this.isLoading = false
+      }, 1000)
     }
   }
 }

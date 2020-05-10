@@ -81,6 +81,12 @@ export default {
   },
   mounted() {
     getDetail({ movieId: this.$route.params.movieId }).then(res => {
+      if (Object.keys(res).length === 0) {
+        console.log('空对象')
+        this.$toast.fail('抱歉，没有找到更多信息')
+        this.$router.back()
+        return
+      }
       this.detailList = res.detailMovie
       this.bgUrl = this.detailList.img.replace(/w\.h/, '1000.1500')
     })

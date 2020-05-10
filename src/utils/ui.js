@@ -21,7 +21,8 @@ import {
   Field,
   Divider,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  PullRefresh
 } from 'vant'
 Vue.use(Button)
 Vue.use(Tabbar)
@@ -45,3 +46,4 @@ Vue.use(Divider)
 
 Vue.use(Swipe)
 Vue.use(SwipeItem)
+Vue.use(PullRefresh)

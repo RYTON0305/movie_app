@@ -89,6 +89,10 @@ export default {
 </script>
 <style lang="less">
 @import url('https://at.alicdn.com/t/font_1349038_qk1glmidy1j.css');
+html,
+body {
+  scroll-behavior: smooth;
+}
 .van-nav-bar {
   background-color: @background-color !important;
 }
