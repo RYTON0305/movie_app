@@ -1,7 +1,12 @@
 <template>
   <div>
     <ul class="movie-list">
-      <li class="list-item" v-for="item in list_coming" :key="item.id">
+      <li
+        class="list-item"
+        @click="handleToDetail(item.id)"
+        v-for="item in list_coming"
+        :key="item.id"
+      >
         <div class="item-left">
           <img :src="item.img | SetImgSize" :alt="item.nm" />
         </div>
@@ -33,10 +38,18 @@ export default {
     }
   },
   mounted() {
-    getComingSoon().then(res => {
+    getComingSoon({ cityId: this._state }).then(res => {
       console.log(res)
       this.list_coming = res.comingList
     })
+  },
+  methods: {
+    handleToDetail(id) {
+      console.log(id)
+      this.$router.push(`/detail/${id}`).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

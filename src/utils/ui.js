@@ -18,7 +18,10 @@ import {
   DropdownMenu,
   DropdownItem,
   Form,
-  Field
+  Field,
+  Divider,
+  Swipe,
+  SwipeItem
 } from 'vant'
 Vue.use(Button)
 Vue.use(Tabbar)
@@ -38,3 +41,7 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Form)
 Vue.use(Field)
+Vue.use(Divider)
+
+Vue.use(Swipe)
+Vue.use(SwipeItem)

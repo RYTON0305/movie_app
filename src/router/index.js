@@ -39,6 +39,18 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Mine.vue')
   },
   {
+    path: '/detail/:movieId',
+    name: 'Detail',
+    meta: {
+      title: '影片详情'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Detail.vue')
+  },
+  {
     path: '*',
     redirect: '/home'
   }

@@ -1,8 +1,21 @@
 <template>
   <div id="app">
-    <van-nav-bar fixed placeholder :title="this.$route.meta.title" />
+    <van-nav-bar
+      placeholder=""
+      :key="this.$route.meta.title"
+      fixed
+      :title="this.$route.meta.title"
+    />
+
     <div class="app-view">
-      <router-view />
+      <keep-alive>
+        <transition name="van-slide-right" mode="out-in">
+          <router-view />
+        </transition>
+        <!-- <transition name="van-slide-right"> -->
+        <router-view name="Detail"></router-view>
+        <!-- </transition> -->
+      </keep-alive>
     </div>
 
     <van-tabbar placeholder route active-color="#F39C12">
@@ -54,5 +67,9 @@ export default {
 }
 * {
   box-sizing: border-box;
+}
+.app-view {
+  // margin: 46px 0 50px;
+  overflow: hidden;
 }
 </style>

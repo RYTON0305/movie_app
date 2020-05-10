@@ -23,13 +23,13 @@ const getCityList = () => {
 const getSearch = ({ cityId = 10, kw = '' }) => {
   return http('/api/searchList', { cityId, kw })
 }
-const getDetail = (movieId = 345808) => {
+const getDetail = ({ movieId = 345808 }) => {
   return http('/api/detailmovie', { movieId })
 }
 const getLocation = () => {
   return http('/api/getLocation')
 }
-const getCinema = (cityId = 10) => {
+const getCinema = ({ cityId = 10 }) => {
   return http('/api/cinemaList', { cityId })
 }
 

@@ -1,11 +1,14 @@
 <template>
   <div>
-    <van-dropdown-menu active-color="#f39c12">
-      <!-- <van-dropdown-item v-model="value" :options="option" /> -->
-      <van-dropdown-item title="全城"> </van-dropdown-item>
-      <van-dropdown-item title="品牌"> </van-dropdown-item>
-      <van-dropdown-item title="特色"> </van-dropdown-item>
-    </van-dropdown-menu>
+    <div class="tab-fixed">
+      <van-dropdown-menu active-color="#f39c12">
+        <!-- <van-dropdown-item v-model="value" :options="option" /> -->
+        <van-dropdown-item title="全城"> </van-dropdown-item>
+        <van-dropdown-item title="品牌"> </van-dropdown-item>
+        <van-dropdown-item title="特色"> </van-dropdown-item>
+      </van-dropdown-menu>
+    </div>
+
     <ul class="cinema-list">
       <li class="cinema-item" v-for="item in cinemaList" :key="item.id">
         <div class="item-top">
@@ -56,7 +59,8 @@ export default {
     }
   },
   mounted() {
-    getCinema().then(res => {
+    console.log('影院' + this._state.id)
+    getCinema({ cityId: this._state.id }).then(res => {
       console.log(res)
       this.cinemaList = res.cinemas
     })
@@ -94,10 +98,10 @@ export default {
       let index = Object.keys(tagName).findIndex(item => {
         return item === tag
       })
-      console.log(
-        'Object.values(tagName)[index]',
-        Object.values(tagName)[index]
-      )
+      // console.log(
+      //   'Object.values(tagName)[index]',
+      //   Object.values(tagName)[index]
+      // )
       return Object.values(tagName)[index]
     }
   }
@@ -151,5 +155,14 @@ export default {
     color: #f39c12;
     border-color: #f39c12;
   }
+}
+
+.tab-fixed {
+  position: fixed;
+  top: 46px;
+  width: 100vw;
+}
+.cinema-list {
+  margin-top: 48px;
 }
 </style>

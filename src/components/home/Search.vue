@@ -45,7 +45,7 @@ export default {
       if (val === '') {
         this.list_search_movies = []
       } else {
-        getSearch({ kw: val }).then(res => {
+        getSearch({ kw: val, cityId: this._state }).then(res => {
           this.list_search_movies = res.movies.list
           console.log(res.movies.list)
         })
