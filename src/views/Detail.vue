@@ -45,6 +45,7 @@ import 'swiper/css/swiper.css'
 import { ImagePreview } from 'vant'
 export default {
   name: 'Detail',
+  props: ['movieId'],
   data() {
     return {
       detailList: {},
@@ -80,7 +81,7 @@ export default {
     }
   },
   mounted() {
-    getDetail({ movieId: this.$route.params.movieId }).then(res => {
+    getDetail({ movieId: this.movieId }).then(res => {
       if (Object.keys(res).length === 0) {
         console.log('空对象')
         this.$toast.fail('抱歉，没有找到更多信息')

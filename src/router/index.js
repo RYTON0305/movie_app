@@ -44,6 +44,7 @@ const routes = [
     meta: {
       title: '影片详情'
     },
+    props: { detail: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

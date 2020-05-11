@@ -1,4 +1,23 @@
 import axios from 'axios'
+import vue from '../main'
+
+axios.interceptors.response.use(response => {
+  setTimeout(() => {
+    vue.$toast.clear()
+  }, 500)
+  if (response.statusText !== 'OK') {
+    vue.$toast.fail('请求失败')
+  }
+  return response
+})
+axios.interceptors.request.use(config => {
+  vue.$toast.loading({
+    duration: 0, // 持续展示 toast
+    forbidClick: true,
+    message: '加载中'
+  })
+  return config
+})
 const http = (url, params) => {
   return new Promise((resolve, reject) => {
     axios
@@ -11,10 +30,10 @@ const http = (url, params) => {
       })
   })
 }
-const getNowPlaying = (cityId = 10) => {
+const getNowPlaying = ({ cityId = 10 }) => {
   return http('/api/movieOnInfoList', { cityId })
 }
-const getComingSoon = (cityId = 10) => {
+const getComingSoon = ({ cityId = 10 }) => {
   return http('/api/movieComingList', { cityId })
 }
 const getCityList = () => {
