@@ -78,10 +78,11 @@ export default {
         snack: '零食',
         vipTag: 'vip优惠'
       }
-      let index = Object.keys(tagName).findIndex(item => {
-        return item === tag
-      })
-      return Object.values(tagName)[index]
+      // let index = Object.keys(tagName).findIndex(item => {
+      //   return item === tag
+      // })
+      // return Object.values(tagName)[index]
+      return tagName[tag]
     },
     cinemaTagClass: tag => {
       let tagName = {
